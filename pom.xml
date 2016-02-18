@@ -9,7 +9,7 @@
 
 	<name>blog</name>
 	<url>http://maven.apache.org</url>
-
+	
 	<properties>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
@@ -61,5 +61,5 @@
 		    <version>1.7.16</version>
 		</dependency>
 	</dependencies>
-
+	
 </project>
