@@ -34,12 +34,12 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item #if(null==active||active=='home') active#end" href="/">主页</a>
+          <a class="blog-nav-item #if(null==active) active#end" href="/">主页</a>
           <a class="blog-nav-item #if(active=='about') active#end" href="/about">关于我</a>
           #if(null == signin_session)
           <a class="blog-nav-item" href="/signin">登录发布</a>
           #else
-          <a class="blog-nav-item" href="/publish">发布文章</a>
+          <a class="blog-nav-item #if(active=='post') active#end" href="/publish">发布文章</a>
           <a class="blog-nav-item" href="/signin_out">注销</a>
           #end
         </nav>
