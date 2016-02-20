@@ -8,10 +8,6 @@ public interface PostService {
 
 	boolean savePost(String title, String content);
 	
-	boolean updatePost(Long id, String title, String content);
-	
-	boolean deletePost(Long id);
-	
 	List<Post> getPostList(String title, Integer page, Integer count);
 	
 }

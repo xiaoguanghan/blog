@@ -21,16 +21,6 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public boolean updatePost(final Long id, final String title, final String content) {
-		return AR.update("update t_post set title = ? and content = ? where id = ?",title, content, id).commit() > 0;
-	}
-
-	@Override
-	public boolean deletePost(final Long id) {
-		return AR.update("delete from t_post where id = ?",id).commit() > 0;
-	}
-
-	@Override
 	public List<Post> getPostList(String title, Integer page, Integer count) {
 		if(null == page || page < 1){
 			page = 1;
