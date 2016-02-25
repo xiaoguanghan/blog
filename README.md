@@ -8,7 +8,7 @@ git clone https://github.com/blade-samples/blog.git
 
 3. Run Main Class
 ```sh
-mvn exec:java -Dexec.mainClass="app.blog.App"
+mvn clean compile exec:java -Dexec.mainClass="app.blog.App"
 ```
 
 Or use ide(Eclipse、Intellij idea) run `app.blog.App` 
