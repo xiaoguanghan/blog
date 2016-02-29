@@ -1,8 +1,7 @@
 package app.blog.controller;
 
-import java.util.List;
-
 import com.blade.ioc.annotation.Inject;
+import com.blade.jdbc.Page;
 import com.blade.route.annotation.Path;
 import com.blade.route.annotation.Route;
 import com.blade.view.template.ModelAndView;
@@ -79,9 +78,8 @@ public class IndexController extends BaseController{
 	public ModelAndView homePage(Request request, Response response){
 		Integer page = request.paramAsInt("page");
 		String title = request.query("title");
-		List<Post> posts = postService.getPostList(title, page, 5);
-		request.attribute("posts", posts);
-		request.attribute("page", page);
+		Page<Post> postPage = postService.getPostList(title, page, 5);
+		request.attribute("postPage", postPage);
 		return this.getView("index");
 	}
 	

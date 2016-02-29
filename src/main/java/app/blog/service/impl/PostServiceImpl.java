@@ -1,10 +1,11 @@
 package app.blog.service.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import com.blade.ioc.annotation.Component;
 import com.blade.jdbc.AR;
+import com.blade.jdbc.Page;
+import com.blade.jdbc.QueryParam;
 
 import app.blog.model.Post;
 import app.blog.service.PostService;
@@ -21,7 +22,7 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public List<Post> getPostList(String title, Integer page, Integer count) {
+	public Page<Post> getPostList(String title, Integer page, Integer count) {
 		if(null == page || page < 1){
 			page = 1;
 		}
@@ -29,12 +30,12 @@ public class PostServiceImpl implements PostService {
 			count = 10;
 		}
 		page = page - 1;
-		
+		QueryParam queryParam = QueryParam.me();
 		if(StringKit.isNotBlank(title)){
-			title = "%" + title + "%";
-			return AR.find("where title like ? order by id desc limit ?,?", title, page, count).list(Post.class);
+			queryParam.like("title", "%" + title + "%");
 		}
-		return AR.find("order by id desc limit ?,?", page, count).list(Post.class);
+		queryParam.orderby("id desc").page(page, count);
+		return AR.find(queryParam).page(Post.class);
 	}
 
 }
