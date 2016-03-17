@@ -18,23 +18,27 @@ public class PostServiceImpl implements PostService {
 	
 	@Override
 	public boolean savePost(final String title, final String content) {
-		return AR.update(insertSql, title, content, 0, new Date()).commit() > 0;
+		int result = AR.update(insertSql, title, content, 0, new Date()).executeUpdate();
+		return result > 0;
 	}
 
 	@Override
 	public Page<Post> getPostList(String title, Integer page, Integer count) {
+		
 		if(null == page || page < 1){
 			page = 1;
 		}
+		
 		if(null == count || count < 1){
 			count = 10;
 		}
-		page = page - 1;
+		
 		QueryParam queryParam = QueryParam.me();
 		if(StringKit.isNotBlank(title)){
 			queryParam.like("title", "%" + title + "%");
 		}
 		queryParam.orderby("id desc").page(page, count);
+		
 		return AR.find(queryParam).page(Post.class);
 	}
 

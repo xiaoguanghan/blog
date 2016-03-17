@@ -1,12 +1,15 @@
 package app.blog.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import com.blade.jdbc.annotation.Table;
 
 @Table(value = "t_post")
-public class Post {
-
+public class Post implements Serializable{
+	
+	private static final long serialVersionUID = -4017213769930996193L;
+	
 	private Long id;
 	private String title;
 	private Long view_count;
